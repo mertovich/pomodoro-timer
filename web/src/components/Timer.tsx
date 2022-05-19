@@ -1,12 +1,14 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
-type Props = {}
+interface IProps {
+    viewTime: string
+}
 
-const Timer = (props: Props) => {
+const Timer: React.FC<IProps> = ({ viewTime }) => {
     return (
         <Container className='text-center' >
-            <p style={{marginTop: '5%', fontSize: '10rem'}} >Time</p>
+            <p style={{ marginTop: '5%', fontSize: '10rem' }} >{viewTime}</p>
         </Container>
     )
 }
