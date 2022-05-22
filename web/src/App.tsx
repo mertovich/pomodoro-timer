@@ -12,11 +12,11 @@ const App = (props: Props) => {
   const [isPaused, setIsPaused] = useState(false)
   const [isReset, setIsReset] = useState(false)
   const [viewTime, setViewTime] = useState<string>('')
-  const [buttonColor, setButtonColor] = useState<String>('')
-  const [bgColor, setBgColor] = useState<String>('')
-  const [navBarColor, setNavBarColor] = useState<String>('')
-  const [navBarTextColor, setNavBarTextColor] = useState<String>('')
-  const [textColor, setTextColor] = useState<String>('')
+  const [buttonColor, setButtonColor] = useState<string>('')
+  const [bgColor, setBgColor] = useState<string>('')
+  const [navBarColor, setNavBarColor] = useState<string>('')
+  const [navBarTextColor, setNavBarTextColor] = useState<string>('')
+  const [textColor, setTextColor] = useState<string>('')
 
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const App = (props: Props) => {
     }
   }, [isRunning, timer])
 
-  const themeChange = (buttonColor: String, bgColor: String, navBarColor: String, navBarTextColor: String, textColor: String) => {
+  const themeChange = (buttonColor: string, bgColor: string, navBarColor: string, navBarTextColor: string, textColor: string) => {
     setButtonColor(buttonColor)
     setBgColor(bgColor)
     setNavBarColor(navBarColor)
@@ -79,12 +79,25 @@ const App = (props: Props) => {
     setViewTime('00:00')
   }
 
+  const theme = {
+    buttonColor: buttonColor,
+    bgColor: bgColor,
+    navBarColor: navBarColor,
+    navBarTextColor: navBarTextColor,
+    textColor: textColor
+  }
+
   return (
-    <div>
-      <NavBar />
-      <TimerForm handleChange={handleChange} handleStart={handleStart} handleReset={handleReset} handlePause={handlePause} />
-      <Timer viewTime={viewTime} />
-      <ThemeInput themeChange={themeChange} />
+    <div style={{
+      backgroundColor: theme.bgColor,
+      height: '100vh',
+      width: '100vw',
+      overflowX: 'hidden',
+    }} >
+      <NavBar theme={theme} />
+      <TimerForm theme={theme} handleChange={handleChange} handleStart={handleStart} handleReset={handleReset} handlePause={handlePause} />
+      <Timer theme={theme} viewTime={viewTime} />
+      <ThemeInput theme={theme} themeChange={themeChange} />
     </div>
   )
 }

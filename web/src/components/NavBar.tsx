@@ -1,14 +1,26 @@
 import React from 'react'
-import {Navbar, Container} from 'react-bootstrap'
+import { Navbar, Container } from 'react-bootstrap'
 
-type Props = {}
+interface IProps {
+    theme: {
+        buttonColor: string
+        bgColor: string
+        navBarColor: string
+        navBarTextColor: string
+        textColor: string
+    }
+}
 
-const NavBar = (props: Props) => {
+const NavBar: React.FC<IProps> = ({ theme }) => {
     return (
         <div>
-            <Navbar bg="light" variant="light">
+            <Navbar style={{
+                backgroundColor: theme.navBarColor,
+            }}>
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="#home" style={{
+                        color: theme.navBarTextColor,
+                    }} >
                         <img
                             alt=""
                             src="/logo.svg"

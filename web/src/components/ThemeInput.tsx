@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
 interface IPros {
-    themeChange: (buttonColor: String, bgColor: String, navBarColor: String, navBarTextColor: String, textColor: String) => void
+    themeChange: (buttonColor: string, bgColor: string, navBarColor: string, navBarTextColor: string, textColor: string) => void
+    theme: {
+        buttonColor: string
+        bgColor: string
+        navBarColor: string
+        navBarTextColor: string
+        textColor: string
+    }
 }
 
-const ThemeInput: React.FC<IPros> = ({ themeChange }) => {
-    const [buttonColor, setButtonColor] = useState<String>('')
-    const [bgColor, setBgColor] = useState<String>('')
-    const [navBarColor, setNavBarColor] = useState<String>('')
-    const [navBarTextColor, setNavBarTextColor] = useState<String>('')
-    const [textColor, setTextColor] = useState<String>('')
+const ThemeInput: React.FC<IPros> = ({ themeChange, theme }) => {
+    const [buttonColor, setButtonColor] = useState<string>('')
+    const [bgColor, setBgColor] = useState<string>('')
+    const [navBarColor, setNavBarColor] = useState<string>('')
+    const [navBarTextColor, setNavBarTextColor] = useState<string>('')
+    const [textColor, setTextColor] = useState<string>('')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
@@ -32,7 +39,7 @@ const ThemeInput: React.FC<IPros> = ({ themeChange }) => {
             marginLeft: '40%',
             marginRight: '40%',
         }} >
-            <h1>Theme</h1>
+            <h1 style={{ color: theme.textColor }} >Theme</h1>
             <Row>
                 <input name='buttonColor' onChange={handleChange} type='color' />
                 <label>Button Color</label>
@@ -53,7 +60,11 @@ const ThemeInput: React.FC<IPros> = ({ themeChange }) => {
                 <input name='textColor' onChange={handleChange} type='color' />
                 <label>Text Color</label>
             </Row>
-            <button onClick={() => themeChange(buttonColor, bgColor, navBarColor, navBarTextColor, textColor)} type="submit">Theme Change</button>
+            <button onClick={() => themeChange(buttonColor, bgColor, navBarColor, navBarTextColor, textColor)} type="submit" style={{
+                backgroundColor: theme.buttonColor,
+                color: theme.textColor,
+                borderColor: theme.buttonColor,
+            }} >Theme Change</button>
         </div>
     )
 }
