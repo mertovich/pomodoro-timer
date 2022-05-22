@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
 import TimerForm from './components/TimerForm'
 import Timer from './components/Timer'
+import ThemeInput from './components/ThemeInput'
 
 type Props = {}
 
@@ -11,6 +12,12 @@ const App = (props: Props) => {
   const [isPaused, setIsPaused] = useState(false)
   const [isReset, setIsReset] = useState(false)
   const [viewTime, setViewTime] = useState<string>('')
+  const [buttonColor, setButtonColor] = useState<String>('')
+  const [bgColor, setBgColor] = useState<String>('')
+  const [navBarColor, setNavBarColor] = useState<String>('')
+  const [navBarTextColor, setNavBarTextColor] = useState<String>('')
+  const [textColor, setTextColor] = useState<String>('')
+
 
   useEffect(() => {
     if (isRunning) {
@@ -22,6 +29,15 @@ const App = (props: Props) => {
       return () => clearInterval(interval)
     }
   }, [isRunning, timer])
+
+  const themeChange = (buttonColor: String, bgColor: String, navBarColor: String, navBarTextColor: String, textColor: String) => {
+    setButtonColor(buttonColor)
+    setBgColor(bgColor)
+    setNavBarColor(navBarColor)
+    setNavBarTextColor(navBarTextColor)
+    setTextColor(textColor)
+    console.log(buttonColor)
+  }
 
   const viewTimeChenge = () => {
     const minute = Math.floor(timer / 60)
@@ -68,6 +84,7 @@ const App = (props: Props) => {
       <NavBar />
       <TimerForm handleChange={handleChange} handleStart={handleStart} handleReset={handleReset} handlePause={handlePause} />
       <Timer viewTime={viewTime} />
+      <ThemeInput themeChange={themeChange} />
     </div>
   )
 }
