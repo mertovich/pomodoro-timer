@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Row, Button } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
 interface IPros {
     themeChange: (buttonColor: String, bgColor: String, navBarColor: String, navBarTextColor: String, textColor: String) => void
@@ -53,7 +53,7 @@ const ThemeInput: React.FC<IPros> = ({ themeChange }) => {
                 <input name='textColor' onChange={handleChange} type='color' />
                 <label>Text Color</label>
             </Row>
-            <Button onClick={()=> themeChange(buttonColor,bgColor,navBarColor,navBarTextColor, textColor)} variant="primary" type="submit">Theme Change</Button>
+            <button onClick={() => themeChange(buttonColor, bgColor, navBarColor, navBarTextColor, textColor)} type="submit">Theme Change</button>
         </div>
     )
 }

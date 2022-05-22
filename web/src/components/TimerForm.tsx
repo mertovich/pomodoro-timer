@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputGroup, FormControl, Container, Button } from 'react-bootstrap'
+import { InputGroup, FormControl, Container } from 'react-bootstrap'
 
 interface IProps {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -8,15 +8,15 @@ interface IProps {
     handlePause: () => void
 }
 
-const TimerForm:React.FC<IProps> = ({ handleChange, handleStart, handlePause, handleReset }) => {
+const TimerForm: React.FC<IProps> = ({ handleChange, handleStart, handlePause, handleReset }) => {
     return (
         <Container>
             <InputGroup size="lg">
                 <InputGroup.Text id="inputGroup-sizing-lg">Minute</InputGroup.Text>
                 <FormControl onChange={handleChange} type='number' aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
-                <Button onClick={handleStart} variant="primary" type="submit">Start</Button>
-                <Button onClick={handlePause} variant="primary" type="submit">Pause</Button>
-                <Button onClick={handleReset} variant="primary" type="submit">Reset</Button>
+                <button onClick={handleStart} type="submit">Start</button>
+                <button onClick={handlePause} type="submit">Pause</button>
+                <button onClick={handleReset} type="submit">Reset</button>
             </InputGroup>
         </Container>
     )
